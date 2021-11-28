@@ -1,0 +1,40 @@
+"""5.
+Реализовать структуру «Рейтинг», представляющую собой не возрастающий набор натуральных чисел.
+У пользователя необходимо запрашивать новый элемент рейтинга. Если в рейтинге существуют элементы 
+с одинаковыми значениями, то новый элемент с тем же значением должен разместиться после них."""
+
+def_list = [10, 3, 1]
+len_list = len(def_list)
+left_bound = 0
+right_bound = len_list
+not_found = True
+while True:
+    try:
+        new_el = input('введите новый элемент рейтинга: ')
+        if new_el == 'stop':
+            break
+        new_el = int(new_el)
+    except ValueError:
+        print('элементами должны являться натуральные числа')
+        continue
+    while not_found:
+        for i in range(len_list - 1):
+            middle_position = (left_bound + right_bound) // 2
+            if new_el > def_list[0]:
+                def_list.insert(0, new_el)
+                not_found = False
+            elif new_el <= def_list[-1]:
+                def_list.append(new_el)
+                not_found = False
+                if def_list[middle_position] < new_el:
+                    right_bound = middle_position
+                else:
+                    left_bound = middle_position
+                if right_bound - left_bound == 1:
+                    if def_list[left_bound] < new_el:
+                        def_list.insert(i, new_el)
+                        not_found = False
+                    else:
+                        def_list.insert(i, new_el)
+                        not_found = False
+        print(def_list)
