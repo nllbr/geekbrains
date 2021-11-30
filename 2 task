@@ -4,28 +4,12 @@
  При нечетном количестве элементов последний сохранить на своем месте. 
  Для заполнения списка элементов необходимо использовать функцию input()."""
 
-i = 0
-j = 1
 given_list = []
-result_list = []
 element = []
-hold = []
-el = []
 while element != 'stop':
     element = input('введите элемент списка, для того, чтобы закончить ввод введиите "stop": ')
     given_list.append(element)
     if element == 'stop':
         given_list.pop()
+given_list[:-1:2], given_list[1::2] = given_list[1::2], given_list[:-1:2]
 print(given_list)
-
-for el in given_list:
-    hold = given_list[i]
-    el = given_list[i]
-    result_list.append(el)
-    el = hold
-    result_list.append(el)
-    i += 1
-    j += 1
-    if i is len(given_list):
-        break
-print(result_list)
