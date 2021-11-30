@@ -1,0 +1,23 @@
+my_struct = [(1, {'название': 'комп', 'цена': '56', 'количество': '4', 'ед': 'шт'}),
+             (2, {'название': 'науш', 'цена': '2', 'количество': '567', 'ед': 'шт'})
+             ]
+# while True:
+#     check_inputs = input('продолжить ввод д/н: ')
+#     if check_inputs == 'д':
+#         my_dict = {'название': input('введите название товара: '), 'цена': input('введите цену товара: '),
+#                    'количество': input('введите количество товара: '), 'ед': input('введите ед. измерения товара: ')}
+#         my_struct.append((len(my_struct)+1, my_dict))
+#     elif check_inputs == 'н':
+#         break
+#     else:
+#         check_inputs = input('продолжить ввод д/н: ')
+# print(my_struct)
+result_dict = {}
+for struct in my_struct:
+    struct_number, struct_dict = struct
+    for key, value in struct_dict.items():
+        value_list = struct_dict.get(key, [])
+        if value not in value_list:
+            value_list.append(value)
+        result_dict[key] = value_list
+print(result_dict)
