@@ -1,0 +1,17 @@
+"""3. Создать текстовый файл (не программно), построчно записать фамилии сотрудников и величину их окладов.
+Определить, кто из сотрудников имеет оклад менее 20 тыс., вывести фамилии этих сотрудников.
+Выполнить подсчет средней величины дохода сотрудников."""
+
+with open("salary.txt", "r") as f_obj:
+    content = f_obj.read()
+    content_list = content.split('\n')
+    count = 0
+    all_sal = 0
+    for line in content_list[1:]:
+        count += 1
+        name, salary = line.split(', ')
+        all_sal += int(salary)
+        if int(salary) < 20000:
+            print(name, salary)
+    print(f'средняя величина дохода сотрудников {all_sal / count}')
+    
