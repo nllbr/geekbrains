@@ -1,0 +1,15 @@
+"""5. Создать (программно) текстовый файл, записать в него программно набор чисел, разделенных пробелами.
+Программа должна подсчитывать сумму чисел в файле и выводить ее на экран."""
+
+numbers = ''
+summa = 0
+with open("numbers.txt", "w+") as f_obj:
+    numbers += input('введите числа разделенные пробелами ')
+    f_obj.write(numbers)
+    f_obj.seek(0)
+    text = f_obj.read()
+    text_copy = text[::2]
+    for el in text_copy:
+        summa += int(el)
+print(text)
+print(summa)
