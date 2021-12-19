@@ -2,12 +2,8 @@
 Об окончании ввода данных свидетельствует пустая строка."""
 
 
-text_file = open("text_file.txt", "w")
-user_list = []
-while True:
-    user_string = input('введите строку для записи в файл: ')
-    text_file.writelines(user_string + '\n')
-    if not user_string:
-        print('запись данных окончена')
-        break
-text_file.close()
+input_str = input('введите строку: ')
+with open("text_file.txt", "w") as file:
+    while input_str:
+        file.write(input_str + '\n')
+        input_str = input('введите следующую стрку строку: ')
