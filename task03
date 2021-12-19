@@ -12,6 +12,6 @@ with open("salary.txt", "r") as f_obj:
         name, salary = line.split(', ')
         all_sal += int(salary)
         if int(salary) < 20000:
-            print(name, salary)
+            print(f'{name} имеет оклад менее 20000')
     print(f'средняя величина дохода сотрудников {all_sal / count}')
     
