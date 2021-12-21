@@ -1,0 +1,80 @@
+"""4. Реализуйте базовый класс Car. У данного класса должны быть следующие атрибуты:
+speed, color, name, is_police (булево). А также методы: go, stop, turn(direction), которые должны сообщать,
+что машина поехала, остановилась, повернула (куда). Опишите несколько дочерних классов: TownCar, SportCar, WorkCar,
+PoliceCar. Добавьте в базовый класс метод show_speed, который должен показывать текущую скорость автомобиля.
+Для классов TownCar и WorkCar переопределите метод show_speed. При значении скорости свыше 60 (TownCar) и 40 (WorkCar)
+должно выводиться сообщение о превышении скорости.
+
+Создайте экземпляры классов, передайте значения атрибутов. Выполните доступ к атрибутам, выведите результат.
+Выполните вызов методов и также покажите результат."""
+
+
+class Car:
+    def __init__(self, speed, color, name, is_police):
+        self.speed = speed
+        self.color = color
+        self.name = name
+        self.is_police = is_police
+
+    def go(self):
+        print(f'автомобиль {self.name} поехал')
+
+    def stop(self):
+        print(f'автомобиль {self.name} остановился')
+
+    def turn(self, direction):
+        print(f'автомобиль {self.name} повернул на{direction}')
+
+    def show_speed(self, speed):
+        print(f' скорость автомобиля {self.name} равна {speed} км/ч')
+
+
+class TownCar(Car):
+    def show_speed(self):
+        if self.speed > 60:
+            print(f'автомобиль, {self.name}, снизьте скорость до 60 км/ч')
+        else:
+            Car.show_speed()
+
+
+class SportCar(Car):
+    def __init__(self, speed, color, name):
+        super().__init__(self, speed, color, name, is_police=False)
+
+
+class WorkCar(Car):
+    def show_speed(self):
+        if self.speed > 40:
+            print(f'автомобиль, {self.name}, снизьте скорость до 40 км/ч')
+        else:
+            Car.show_speed()
+
+
+class PoliceCar(Car):
+    def __init__(self, speed, color, name, is_police):
+        super().__init__(self, speed, color, name, is_police=True)
+
+
+my_town_car = TownCar(90, 'white', 'Toyota Camry', False)
+my_town_car.go()
+my_town_car.turn('лево')
+my_town_car.show_speed()
+my_town_car.stop()
+
+my_sport_car = SportCar(190, 'yellow', 'Lamborgini')
+my_sport_car.go()
+my_sport_car.turn('право')
+my_sport_car.show_speed()
+my_sport_car.stop()
+
+my_work_car = WorkCar(70, 'black', 'Mercedes Benz', False)
+my_work_car.go()
+my_work_car.turn('право')
+my_work_car.show_speed()
+my_work_car.stop()
+
+my_police_car = PoliceCar(200, 'white and blue', 'UAZ')
+my_police_car.go()
+my_police_car.turn('лево')
+my_police_car.show_speed()
+my_police_car.stop()
