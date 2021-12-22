@@ -1,0 +1,48 @@
+"""Реализовать программу работы с органическими клетками. Необходимо создать класс Клетка.
+В его конструкторе инициализировать параметр, соответствующий количеству клеток (целое число).
+В классе должны быть реализованы методы перегрузки арифметических операторов: сложение (__add__()),
+вычитание (__sub__()), умножение (__mul__()), деление (__truediv__()).Данные методы должны применяться только к
+клеткам и выполнять увеличение, уменьшение, умножение и обычное (не целочисленное) деление клеток, соответственно.
+В методе деления должно осуществляться округление значения до целого числа."""
+
+class Cell:
+    def __init__(self, amount):
+
+        try:
+            if amount <= 0:
+                raise ValueError('кол-во должно быть больше 0')
+            self.amount = int(amount)
+        except TypeError:
+            self.amount = 1
+            print('проверьте значение')
+        except ValueError:
+            print('проверьте значение')
+            self.amount = 1
+
+    def __add__(self, other):
+        return Cell(self.amount + other.amount)
+
+    def __sub__(self, other):
+        if self.amount - other.amount > 0:
+            return Cell(self.amount - other.amount)
+        else:
+            print('вычитание невозможно')
+
+    def __mul__(self, other):
+        return Cell(self.amount * other.amount)
+
+    def __truediv__(self, other):
+        return Cell(self.amount // other.amount)
+
+    def make_order(self, param):
+        return (('*' * param) + '\n') * (self.amount // param) + '*' * (self.amount % param)
+
+
+cell_1 = Cell(12)
+cell_2 = Cell(15)
+# print(cell_1.make_order(4))
+# print(cell_2.make_order(5))
+
+cell_3 = cell_1*cell_2
+print(cell_3)
+print(cell_3.make_order(8))
