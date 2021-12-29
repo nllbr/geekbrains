@@ -1,0 +1,21 @@
+"""4. Создать (не программно) текстовый файл со следующим содержимым:
+
+One — 1
+Two — 2
+Three — 3
+Four — 4
+
+Необходимо написать программу, открывающую файл на чтение и считывающую построчно данные.
+При этом английские числительные должны заменяться на русские.
+Новый блок строк должен записываться в новый текстовый файл."""
+
+
+rus_names = {'One': 'один', 'Two': 'два', '3': 'Three', 'Four': 'четыре'}
+with open("123e.txt", "r") as file_read, open("123r.txt", "w") as file_write:
+    content = file_read.readlines()
+    # content_list = content.split('\n')
+    result_content = []
+    for line in content:
+        text_number, number = line.split(' - ')
+        result_content = f'{rus_names.get(text_number)} - {number}'
+        print(result_content, file=file_write)
