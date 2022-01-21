@@ -1,0 +1,25 @@
+""" Создайте собственный класс-исключение, который должен проверять содержимое
+списка на наличие только чисел. Проверить работу исключения на реальном примере.
+Необходимо запрашивать у пользователя данные и заполнять список.
+Класс-исключение должен контролировать типы данных элементов списка."""
+
+
+class DitDivision(Exception):
+    def __init__(self):
+        self.txt = 'Only digits required'
+
+
+my_list = []
+input_string = input('enter digit. to exit enter an empty string: ')
+while input_string:
+    try:
+        if input_string.isdigit():
+            my_list.append(float(input_string))
+        else:
+            raise DitDivision
+    except DitDivision as e:
+        print(e.txt)
+
+    input_string = input('enter digit. to exit enter an empty string: ')
+
+print(my_list)
